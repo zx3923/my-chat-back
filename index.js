@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const http = require("http").Server(app);
 const PORT = 4000;
-const socketIO = require("socket.io")(http, {
+const socketIO = require("socket.io")(server, {
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
@@ -40,4 +40,5 @@ app.get("/api", (req, res) => {
 
 http.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
+  console.log("수정됨");
 });
