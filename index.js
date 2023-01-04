@@ -6,6 +6,7 @@ const PORT = 4000;
 const socketIO = require("socket.io")(http, {
   cors: {
     origin: "https://zx3923.github.io/my-chat-front/",
+    methods: ["GET", "POST"],
   },
 });
 
