@@ -26,6 +26,17 @@ socketIO.on("connection", (socket) => {
     socketIO.emit("newUserResponse", users);
   });
 
+  socket.on("nameChange", (data) => {
+    users.map((item) => {
+      if (item.socketID === data.socketID) {
+        item.userName = data.changeName;
+
+        socketIO.emit("updateName", data.changeName);
+      }
+    });
+    socketIO.emit("newUserResponse", users);
+  });
+
   socket.on("disconnect", () => {
     console.log("🔥: A user disconnected");
     users = users.filter((user) => user.socketID !== socket.id);
@@ -41,5 +52,5 @@ app.get("/api", (req, res) => {
 http.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 
-  console.log("수정됨");
+  console.log("수정됨2");
 });
